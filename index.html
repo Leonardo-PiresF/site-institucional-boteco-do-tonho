@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Boteco do Tonho</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#fcfbf8",
+                        "background-dark": "#221e10",
+                        "text-main": "#1c180d",
+                        "text-muted": "#9c8749",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased overflow-x-hidden scroll-smooth">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f0e7] bg-background-light/95 backdrop-blur-md px-10 py-3 dark:bg-background-dark/95 dark:border-b-neutral-800">
+            <div class="flex items-center gap-4 text-text-main dark:text-white">
+                <div class=" flex items-center justify-center text-primary">
+                    <img alt="Ícone de um restaurante" class="w-32 h-auto" data-alt="Ícone de um restaurante"
+                        src="logo2.png" />
+                </div>
+
+            </div>
+            <div class="flex flex-1 justify-end gap-8">
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="#inicio">Início</a>
+                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="#sobre">Sobre</a>
+                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="#cardapio">Cardápio</a>
+                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                        href="#localizacao">Localização</a>
+                </nav>
+                <button
+                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-yellow-400 transition-colors text-text-main text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Ver Cardápio</span>
+                </button>
+            </div>
+        </header>
+        <main class="flex-grow">
+            <!-- sessão hero -->
+            <section class="@container px-4 py-6 md:px-10 lg:px-40" id="inicio">
+                <div class="rounded-xl overflow-hidden relative min-h-[560px] flex flex-col items-center justify-center text-center p-8 bg-cover bg-center"
+                    data-alt="Foto conceitual do restaurante, dos pratos ou da equipe"
+                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('tilapia.png');">
+                    <div class="flex flex-col gap-4 max-w-3xl animate-fade-in-up">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm">Desde 2010</span>
+                        <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em]">
+                            Boteco do Tonho
+                        </h1>
+                        <h2 class="text-gray-200 text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
+                            Comida raíz de verdade!
+                        </h2>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+                            <a class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary hover:bg-yellow-400 text-text-main text-base font-bold transition-all transform hover:scale-105"
+                                href="#cardapio">
+                                Ver Cardápio
+                            </a>
+                            <a class="flex items-center justify-center rounded-lg h-12 px-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-base font-bold border border-white/20 transition-all"
+                                href="#sobre">
+                                Nossa História
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- seção "sobre" -->
+            <section class="py-16 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="sobre">
+                <div class="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-12 items-center">
+                    <div class="flex flex-col gap-6 order-2 md:order-1">
+                        <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
+                            <span class="w-8 h-[2px] bg-primary"></span>
+                            Sobre Nós
+                        </div>
+                        <h2 class="text-text-main dark:text-white text-4xl md:text-5xl font-bold leading-tight">
+                            Titulo da seção sobre o restaurante
+                        </h2>
+                        <div class="space-y-4 text-text-muted dark:text-gray-400 text-lg leading-relaxed">
+                            <p>
+                                Breve introdução sobre a história do boteco do tonho
+
+                            </p>
+                            <p>
+                                Aqui, alguma explicação sobre o restaurante, suas inspirações, valores e tipo de
+                                culinaria
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
+                            <div class="flex flex-col gap-2">
+                                <span class="material-symbols-outlined text-primary text-4xl">chair</span>
+                                <h3 class="font-bold text-text-main dark:text-white">Ambiente Aconchegante</h3>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="material-symbols-outlined text-primary text-4xl">restaurant_menu</span>
+                                <h3 class="font-bold text-text-main dark:text-white">Porções Generosas</h3>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="material-symbols-outlined text-primary text-4xl">diversity_3</span>
+                                <h3 class="font-bold text-text-main dark:text-white">Tradição Familiar</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative order-1 md:order-2 h-full min-h-[400px]">
+                        <div class="absolute inset-0 bg-primary/20 rounded-2xl transform rotate-3 z-0"></div>
+                        <img alt="foto do interior do restaurante"
+                            class="relative z-10 w-full h-full object-cover rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                            data-alt="foto do interior do restaurante" src="equipe2.jpg" />
+                    </div>
+                </div>
+            </section>
+            <!-- Menu Section -->
+            <section class="py-16 px-4 md:px-10 lg:px-40 bg-[#f4f0e7]/30 dark:bg-[#1a160a]" id="cardapio">
+                <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
+                    <div class="text-center flex flex-col gap-3">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm">Nosso Cardápio</span>
+                        <h2 class="text-text-main dark:text-white text-4xl font-bold">Sabores que encantam</h2>
+                    </div>
+                    <!-- Tabs -->
+                    <div class="flex justify-center border-b border-[#e8e2ce] dark:border-gray-800">
+                        <div class="flex w-full max-w-md justify-between">
+                            <button
+                                class="group flex flex-col items-center justify-center border-b-[3px] border-b-primary pb-3 pt-4 flex-1 text-primary transition-colors">
+                                <span class="material-symbols-outlined mb-1">tapas</span>
+                                <span class="text-sm font-bold tracking-wider">Petiscos</span>
+                            </button>
+                            <button
+                                class="group flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-primary/50 text-text-muted hover:text-text-main pb-3 pt-4 flex-1 transition-colors dark:text-gray-400 dark:hover:text-white">
+                                <span class="material-symbols-outlined mb-1">restaurant</span>
+                                <span class="text-sm font-bold tracking-wider">Pratos Principais</span>
+                            </button>
+                            <button
+                                class="group flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-primary/50 text-text-muted hover:text-text-main pb-3 pt-4 flex-1 transition-colors dark:text-gray-400 dark:hover:text-white">
+                                <span class="material-symbols-outlined mb-1">local_bar</span>
+                                <span class="text-sm font-bold tracking-wider">Bebidas</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Item 1 -->
+                        <div
+                            class="bg-white dark:bg-[#2a261a] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800">
+                            <div class="h-48 overflow-hidden relative">
+                                <img alt="Petisco 1"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    data-alt="descrição do petisco 1" src="queijo_crocante.png" />
+                                <div
+                                    class="absolute top-3 right-3 bg-primary text-text-main font-bold px-3 py-1 rounded-full text-sm shadow-sm">
+                                    R$ XX,00
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col gap-3">
+                                <h3 class="text-text-main dark:text-white text-xl font-bold">Queijo crocante e caldinhos
+                                </h3>
+                                <p class="text-text-muted dark:text-gray-400 text-sm line-clamp-2">Uma combinação
+                                    perfeita de sabor e conforto: o queijo crocante chega dourado por fora, macio e
+                                    cremoso por dentro, servido em lascas generosas que derretem na boca. Ao redor, uma
+                                    seleção de caldinhos bem temperados, encorpados e aromáticos, que vão do
+                                    clássico camarão à carne e feijão, ideais para mergulhar o queijo ou saborear
+                                    colherada após colherada. Uma pedida irresistível e cheia de personalidade do Boteco
+                                    do Tonho.
+
+                                </p>
+                                <button
+                                    class="mt-2 w-full flex items-center justify-center gap-2 rounded-lg py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                                    Pedir no WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div
+                            class="bg-white dark:bg-[#2a261a] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800">
+                            <div class="h-48 overflow-hidden relative">
+                                <img alt="petisco 2"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    data-alt="descrição do petisco 2" src="caldinho.png" />
+                                <div
+                                    class="absolute top-3 right-3 bg-primary text-text-main font-bold px-3 py-1 rounded-full text-sm shadow-sm">
+                                    R$ XX,00
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col gap-3">
+                                <h3 class="text-text-main dark:text-white text-xl font-bold">Caldinho de caruru</h3>
+                                <p class="text-text-muted dark:text-gray-400 text-sm line-clamp-2">Um caldinho
+                                    tradicional e saboroso, feito com caruru e temperos regionais. Ideal para acompanhar
+                                    o queijo crocante do Boteco do Tonho.
+                                </p>
+                                <button
+                                    class="mt-2 w-full flex items-center justify-center gap-2 rounded-lg py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                                    Pedir no WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div
+                            class="bg-white dark:bg-[#2a261a] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800">
+                            <div class="h-48 overflow-hidden relative">
+                                <img alt="petisco 3"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    data-alt="descrição do petisco 3" src="" />
+                                <div
+                                    class="absolute top-3 right-3 bg-primary text-text-main font-bold px-3 py-1 rounded-full text-sm shadow-sm">
+                                    R$ XX,00
+                                </div>
+                            </div>
+                            <div class="p-5 flex flex-col gap-3">
+                                <h3 class="text-text-main dark:text-white text-xl font-bold">petisco 3</h3>
+                                <p class="text-text-muted dark:text-gray-400 text-sm line-clamp-2">descrição do petisco
+                                    3</p>
+                                <button
+                                    class="mt-2 w-full flex items-center justify-center gap-2 rounded-lg py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                                    Pedir no WhatsApp
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <button
+                            class="flex items-center gap-2 text-primary font-bold hover:text-yellow-600 transition-colors">
+                            Ver cardápio completo
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Location Section -->
+            <section class="py-16 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="localizacao">
+                <div
+                    class="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-8 rounded-2xl overflow-hidden bg-white dark:bg-[#2a261a] shadow-lg border border-gray-100 dark:border-gray-800">
+                    <div class="p-8 lg:p-12 flex flex-col justify-center gap-8">
+                        <div>
+                            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Venha nos
+                                visitar</span>
+                            <h2 class="text-text-main dark:text-white text-3xl font-bold mb-4">Estamos esperando por
+                                você!</h2>
+                            <p class="text-text-muted dark:text-gray-400">Localizado no coração de Maceió, o Boteco do
+                                Tonho é o ponto de encontro perfeito.</p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex gap-4 items-start">
+                                <div class="p-3 rounded-full bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-text-main dark:text-white mb-1">Endereço</h4>
+                                    <p class="text-text-muted dark:text-gray-400 text-sm">R. Manoel Lourenço, 248 -
+                                        Ponta Grossa, Maceió - AL, 57014-450</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="p-3 rounded-full bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined">schedule</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-text-main dark:text-white mb-1">Horário de Funcionamento
+                                    </h4>
+                                    <p class="text-text-muted dark:text-gray-400 text-sm">Terça a Domingo: 11h às
+                                        16h<br />Feriados: Consulte no Instagram</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start">
+                                <div class="p-3 rounded-full bg-primary/10 text-primary">
+                                    <span class="material-symbols-outlined">call</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-text-main dark:text-white mb-1">Contato</h4>
+                                    <p class="text-text-muted dark:text-gray-400 text-sm">(82)
+                                        3221-6209<br />contato@botecodotonho.com.br</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-[400px] md:h-auto bg-gray-200 relative">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.251524411207!2d-35.748553699999995!3d-9.659537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7014f82616435ab%3A0x38852808cb7a4678!2sBoteco%20do%20Tonho!5e0!3m2!1spt-BR!2sbr!4v1771621607760!5m2!1spt-BR!2sbr"
+                            width="600" height="550" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-[#1c180d] text-white py-12 px-4 md:px-10 lg:px-40">
+            <div
+                class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-800 pb-8">
+                <div class="flex items-center gap-3">
+                    <div class="size-8 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-3xl">restaurant</span>
+                    </div>
+                    <span class="text-xl font-bold">Boteco do Tonho</span>
+                </div>
+                <div class="flex gap-6">
+                    <a class="hover:text-primary transition-colors" href="https://www.instagram.com/botecodotonho/"
+                        target="_blank">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="hover:text-primary transition-colors" href="#">
+                        <span class="sr-only">Facebook</span>
+                        <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div
+                class="max-w-[1200px] mx-auto pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <p>© 2026 Boteco do Tonho. Todos os direitos reservados.</p>
+                <div class="flex gap-4">
+                    <a class="hover:text-white transition-colors" href="#">Termos de Uso</a>
+                    <a class="hover:text-white transition-colors" href="#">Privacidade</a>
+                </div>
+            </div>
+        </footer>
+        <!-- Floating Action Button -->
+        <a aria-label="Fale conosco no WhatsApp"
+            class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-transform hover:scale-110 flex items-center justify-center group"
+            href="#">
+            <span class="material-symbols-outlined text-3xl">chat</span>
+            <span
+                class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out group-hover:ml-2 text-sm font-bold">Fale
+                conosco</span>
+        </a>
+    </div>
+</body>
+
+</html>
