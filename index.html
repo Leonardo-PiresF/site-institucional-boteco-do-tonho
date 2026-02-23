@@ -1,375 +1,1412 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Boteco do Tonho</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
-        rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Abril+Fatface&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#f4c025",
-                        "background-light": "#fcfbf8",
-                        "background-dark": "#221e10",
-                        "text-main": "#1c180d",
-                        "text-muted": "#9c8749",
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        :root {
+            --gold: #c9922c;
+            --gold-light: #e8b84b;
+            --gold-pale: #f5e6c8;
+            --cream: #faf6ee;
+            --dark: #1a1209;
+            --dark-mid: #2c2010;
+            --dark-card: #251c0e;
+            --brown: #6b4c1e;
+            --text-muted: #9a7d52;
+            --green-wa: #25d366;
+            --red: #9f3b16;
         }
 
-        .scroll-smooth {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            height: 72px;
+            background: rgba(250, 246, 238, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 146, 44, 0.2);
+        }
+
+        .header-logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--dark);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.5rem;
+            background: var(--dark);
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1.5px solid var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+
+        #inicio {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('tilapia.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            transform: scale(1.05);
+            animation: heroZoom 20s ease infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1.05);
+            }
+
+            to {
+                transform: scale(1.12);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg,
+                    rgba(26, 18, 9, 0.95) 0%,
+                    rgba(26, 18, 9, 0.6) 50%,
+                    rgba(201, 146, 44, 0.15) 100%);
+        }
+
+        .hero-grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(201, 146, 44, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 146, 44, 0.04) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            animation: fadeUp 1s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 2rem;
+            animation: fadeUp 1s ease 0.1s both;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold-light);
+        }
+
+        .hero-title {
+            font-family: 'Abril Fatface', cursive;
+            font-size: clamp(4rem, 12vw, 9rem);
+            line-height: 0.9;
+            color: #fff;
+            letter-spacing: -0.02em;
+            animation: fadeUp 1s ease 0.2s both;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--gold-light);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-top: 0.75rem;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 2rem auto;
+            animation: fadeUp 1s ease 0.3s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.0625rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            animation: fadeUp 1s ease 0.4s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeUp 1s ease 0.5s both;
+        }
+
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2.5rem;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-hero-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(201, 146, 44, 0.4);
+        }
+
+        .btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2.5rem;
+            background: transparent;
+            color: #fff;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-hero-secondary:hover {
+            border-color: var(--gold-light);
+            color: var(--gold-light);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.6875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeUp 1s ease 0.8s both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollLine 2s ease infinite;
+        }
+
+        @keyframes scrollLine {
+            0% {
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+
+            50% {
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+
+            51% {
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+
+            100% {
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+        }
+
+        .marquee-strip {
+            background: var(--gold);
+            padding: 0.875rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-track span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--dark);
+            padding: 0 2rem;
+        }
+
+        .marquee-track .dot {
+            color: var(--dark);
+            opacity: 0.5;
+            padding: 0;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        #sobre {
+            padding: 7rem 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 32px;
+            height: 1.5px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .sobre-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            text-align: justify;
+
+        }
+
+        .sobre-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(201, 146, 44, 0.2);
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(201, 146, 44, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(201, 146, 44, 0.2);
+        }
+
+        .feature-icon .material-symbols-outlined {
+            font-size: 22px;
+            color: var(--gold);
+        }
+
+        .feature-item h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--dark);
+            letter-spacing: 0.03em;
+        }
+
+        .sobre-image-wrap {
+            position: relative;
+        }
+
+        .sobre-image-wrap::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .sobre-image-wrap::after {
+            content: 'Família, amigos e boa comida';
+            white-space: pre;
+            position: absolute;
+            bottom: -1.5rem;
+            left: -1.5rem;
+            background: var(--gold);
+            color: var(--dark);
+            font-family: 'DM serif', cursive;
+            font-size: 1rem;
+            line-height: 1.2;
+            padding: 1rem 1.25rem;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .sobre-image-wrap img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%) contrast(1.05);
+        }
+
+        #cardapio {
+            background: var(--dark);
+            padding: 7rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #cardapio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        #cardapio::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .cardapio-deco {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Abril Fatface', cursive;
+            font-size: clamp(10rem, 25vw, 22rem);
+            color: rgba(255, 255, 255, 0.015);
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -0.05em;
+        }
+
+        .cardapio-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cardapio-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .cardapio-header .section-title {
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .cardapio-header .section-label {
+            color: var(--gold-light);
+        }
+
+        .cardapio-header .section-label::before {
+            background: var(--gold-light);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            border-bottom: 2.5px solid transparent;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: -1px;
+        }
+
+        .tab-btn .material-symbols-outlined {
+            font-size: 20px;
+        }
+
+        .tab-btn:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tab-btn.active {
+            color: var(--gold-light);
+            border-bottom-color: var(--gold-light);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .card {
+            background: var(--dark-card);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .card-img-wrap {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .card:hover .card-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .card-img-wrap.no-img {
+            background: linear-gradient(135deg, var(--dark-mid) 0%, var(--brown) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-img-wrap.no-img .material-symbols-outlined {
+            font-size: 48px;
+            color: rgba(201, 146, 44, 0.3);
+        }
+
+        .card-price {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gold);
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 0.8125rem;
+            letter-spacing: 0.05em;
+            padding: 0.3rem 0.75rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1875rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.7;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-whatsapp {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(37, 211, 102, 0.1);
+            color: var(--green-wa);
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            background: rgba(37, 211, 102, 0.2);
+            border-color: rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        .ver-mais {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .ver-mais a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(201, 146, 44, 0.3);
+            padding-bottom: 0.25rem;
+            transition: all 0.3s;
+        }
+
+        .ver-mais a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+            gap: 0.875rem;
+        }
+
+        #localizacao {
+            padding: 7rem 3rem;
+            background: var(--cream);
+        }
+
+        .localizacao-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .localizacao-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 0;
+            background: var(--dark);
+            overflow: hidden;
+        }
+
+        .localizacao-info {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+
+        .localizacao-info .section-title {
+            color: #fff;
+            font-size: 2.25rem;
+        }
+
+        .localizacao-info .section-label {
+            color: var(--gold-light);
+        }
+
+        .localizacao-info .section-label::before {
+            background: var(--gold-light);
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(201, 146, 44, 0.1);
+            border: 1px solid rgba(201, 146, 44, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon .material-symbols-outlined {
+            font-size: 20px;
+            color: var(--gold-light);
+        }
+
+        .contact-item h4 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-item p {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+        .localizacao-map {
+            height: 520px;
+            position: relative;
+        }
+
+        .localizacao-map iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: none;
+            filter: grayscale(30%) contrast(1.1);
+        }
+
+        footer {
+            background: var(--dark);
+            padding: 3.5rem 3rem 2rem;
+            border-top: 1px solid rgba(201, 146, 44, 0.15);
+        }
+
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #fff;
+        }
+
+        .footer-brand .material-symbols-outlined {
+            font-size: 1.75rem;
+            color: var(--gold);
+        }
+
+        .footer-brand span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .fab-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: var(--green-wa);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.9rem;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .fab-whatsapp:hover {
+            padding: 0.9rem 1.25rem 0.9rem 0.9rem;
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .fab-whatsapp .material-symbols-outlined {
+            font-size: 1.625rem;
+            flex-shrink: 0;
+        }
+
+        .fab-label {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: max-width 0.3s ease, margin-left 0.3s ease;
+        }
+
+        .fab-whatsapp:hover .fab-label {
+            max-width: 120px;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 900px) {
+            header {
+                padding: 0 1.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            #sobre {
+                padding: 5rem 1.5rem;
+            }
+
+            .sobre-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .sobre-image-wrap {
+                order: -1;
+            }
+
+            .sobre-image-wrap img {
+                height: 320px;
+            }
+
+            #cardapio {
+                padding: 5rem 1.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cardapio-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #localizacao {
+                padding: 5rem 1.5rem;
+            }
+
+            .localizacao-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .localizacao-info {
+                padding: 2.5rem;
+            }
+
+            .localizacao-map {
+                height: 320px;
+            }
+
+            footer {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .sobre-features {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: clamp(3rem, 15vw, 5rem);
+            }
+
+            .sobre-features {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                overflow-x: auto;
+            }
+
+            .tab-btn {
+                padding: 0.75rem 1.25rem;
+            }
         }
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased overflow-x-hidden scroll-smooth">
-    <div class="relative flex min-h-screen w-full flex-col">
-        <!-- Header -->
-        <header
-            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f0e7] bg-background-light/95 backdrop-blur-md px-10 py-3 dark:bg-background-dark/95 dark:border-b-neutral-800">
-            <div class="flex items-center gap-4 text-text-main dark:text-white">
-                <div class=" flex items-center justify-center text-primary">
-                    <img alt="Ícone de um restaurante" class="w-32 h-auto" data-alt="Ícone de um restaurante"
-                        src="logo2.png" />
-                </div>
+<body>
 
+    <header>
+        <div class="header-logo">
+            <img src="logo2.png" alt="Boteco do Tonho" />
+        </div>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#cardapio">Cardápio</a>
+            <a href="#localizacao">Localização</a>
+        </nav>
+        <a href="#cardapio" class="btn-primary">Ver Cardápio</a>
+    </header>
+
+    <section id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-grid-lines"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">Fundado em 2010</div>
+            <h1 class="hero-title">
+                Boteco
+                <br>do Tonho
+                <span>Comida raíz de verdade!</span>
+            </h1>
+            <div class="hero-divider"></div>
+            <p class="hero-subtitle">Sabores autênticos, pratos generosos e um ambiente onde todo mundo se sente em
+                casa.</p>
+            <div class="hero-ctas">
+                <a href="#cardapio" class="btn-hero-primary">
+                    <span class="material-symbols-outlined" style="font-size:16px;">restaurant_menu</span>
+                    Ver Cardápio
+                </a>
+                <a href="#sobre" class="btn-hero-secondary">Nossa História</a>
             </div>
-            <div class="flex flex-1 justify-end gap-8">
-                <nav class="hidden md:flex items-center gap-9">
-                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#inicio">Início</a>
-                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#sobre">Sobre</a>
-                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#cardapio">Cardápio</a>
-                    <a class="text-text-main dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#localizacao">Localização</a>
-                </nav>
-                <button
-                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-yellow-400 transition-colors text-text-main text-sm font-bold leading-normal tracking-[0.015em]">
-                    <span class="truncate">Ver Cardápio</span>
-                </button>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <div class="marquee-strip" aria-hidden="true">
+        <div class="marquee-track">
+            <span>Petiscos Artesanais</span><span class="dot">✦</span>
+            <span>Pratos da Casa</span><span class="dot">✦</span>
+            <span>Culinária Regional</span><span class="dot">✦</span>
+            <span>Temperos de Verdade</span><span class="dot">✦</span>
+            <span>Caldos Tradicionais</span><span class="dot">✦</span>
+            <span>Tradição Alagoana</span><span class="dot">✦</span>
+            <span>Petiscos Artesanais</span><span class="dot">✦</span>
+            <span>Pratos da Casa</span><span class="dot">✦</span>
+            <span>Culinária Regional</span><span class="dot">✦</span>
+            <span>Temperos de Verdade</span><span class="dot">✦</span>
+            <span>Caldos Tradicionais</span><span class="dot">✦</span>
+            <span>Tradição Alagoana</span><span class="dot">✦</span>
+        </div>
+    </div>
+
+    <main>
+
+        <section id="sobre">
+            <div class="sobre-grid">
+                <div>
+                    <div class="section-label">Sobre Nós</div>
+                    <h2 class="section-title">
+                        Mais que Comida,<br>é <em>História</em>
+                    </h2>
+                    <p class="sobre-text">Tonho nasceu em Sergipe, mas escolheu Maceió como lar. Entre
+                        tentativas,
+                        acertos e tropeços, aprendeu algo que virou a essência do seu negócio: sabor não se compra, se
+                        constrói.<br>
+
+                        Quando a vida apertou, foi na porta de casa, com um freezer e uma churrasqueira pequena, que
+                        tudo começou. Tonho testava, provava, reinventava receitas e ouvia cada opinião com atenção. Foi
+                        assim que nasceu o prato que mudaria sua história: a costela de porco que conquistou a
+                        vizinhança e, depois, a cidade. O que começou com poucas mesas se transformou em referência
+                        em Maceió. O Boteco do Tonho nunca vendeu apenas comida. Sempre vendeu história.</p>
+                    <p class="sobre-text">Hoje, o Boteco é mais que um restaurante. É o lugar certo para
+                        quem quer
+                        comida boa de verdade, aquela que nunca erra.</p>
+                    <div class="sobre-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <span class="material-symbols-outlined">chair</span>
+                            </div>
+                            <h3>Ambiente Aconchegante</h3>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <span class="material-symbols-outlined">restaurant_menu</span>
+                            </div>
+                            <h3>Porções Generosas</h3>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <span class="material-symbols-outlined">diversity_3</span>
+                            </div>
+                            <h3>Tradição Familiar</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="sobre-image-wrap">
+                    <img src="equipe2.jpg" alt="Interior do restaurante" />
+                </div>
             </div>
-        </header>
-        <main class="flex-grow">
-            <!-- sessão hero -->
-            <section class="@container px-4 py-6 md:px-10 lg:px-40" id="inicio">
-                <div class="rounded-xl overflow-hidden relative min-h-[560px] flex flex-col items-center justify-center text-center p-8 bg-cover bg-center"
-                    data-alt="Foto conceitual do restaurante, dos pratos ou da equipe"
-                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('tilapia.png');">
-                    <div class="flex flex-col gap-4 max-w-3xl animate-fade-in-up">
-                        <span class="text-primary font-bold tracking-wider uppercase text-sm">Desde 2010</span>
-                        <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em]">
-                            Boteco do Tonho
-                        </h1>
-                        <h2 class="text-gray-200 text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
-                            Comida raíz de verdade!
-                        </h2>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-                            <a class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary hover:bg-yellow-400 text-text-main text-base font-bold transition-all transform hover:scale-105"
-                                href="#cardapio">
-                                Ver Cardápio
-                            </a>
-                            <a class="flex items-center justify-center rounded-lg h-12 px-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-base font-bold border border-white/20 transition-all"
-                                href="#sobre">
-                                Nossa História
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- seção "sobre" -->
-            <section class="py-16 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="sobre">
-                <div class="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-12 items-center">
-                    <div class="flex flex-col gap-6 order-2 md:order-1">
-                        <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
-                            <span class="w-8 h-[2px] bg-primary"></span>
-                            Sobre Nós
-                        </div>
-                        <h2 class="text-text-main dark:text-white text-4xl md:text-5xl font-bold leading-tight">
-                            Titulo da seção sobre o restaurante
-                        </h2>
-                        <div class="space-y-4 text-text-muted dark:text-gray-400 text-lg leading-relaxed">
-                            <p>
-                                Breve introdução sobre a história do boteco do tonho
+        </section>
 
-                            </p>
-                            <p>
-                                Aqui, alguma explicação sobre o restaurante, suas inspirações, valores e tipo de
-                                culinaria
-                            </p>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
-                            <div class="flex flex-col gap-2">
-                                <span class="material-symbols-outlined text-primary text-4xl">chair</span>
-                                <h3 class="font-bold text-text-main dark:text-white">Ambiente Aconchegante</h3>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <span class="material-symbols-outlined text-primary text-4xl">restaurant_menu</span>
-                                <h3 class="font-bold text-text-main dark:text-white">Porções Generosas</h3>
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <span class="material-symbols-outlined text-primary text-4xl">diversity_3</span>
-                                <h3 class="font-bold text-text-main dark:text-white">Tradição Familiar</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative order-1 md:order-2 h-full min-h-[400px]">
-                        <div class="absolute inset-0 bg-primary/20 rounded-2xl transform rotate-3 z-0"></div>
-                        <img alt="foto do interior do restaurante"
-                            class="relative z-10 w-full h-full object-cover rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
-                            data-alt="foto do interior do restaurante" src="equipe2.jpg" />
+        <section id="cardapio">
+            <div class="cardapio-deco" aria-hidden="true">MENU</div>
+            <div class="cardapio-inner">
+                <div class="cardapio-header">
+                    <div>
+                        <div class="section-label">Nosso Cardápio</div>
+                        <h2 class="section-title">Sabores que <em>encantam</em></h2>
                     </div>
                 </div>
-            </section>
-            <!-- Menu Section -->
-            <section class="py-16 px-4 md:px-10 lg:px-40 bg-[#f4f0e7]/30 dark:bg-[#1a160a]" id="cardapio">
-                <div class="max-w-[1200px] mx-auto flex flex-col gap-10">
-                    <div class="text-center flex flex-col gap-3">
-                        <span class="text-primary font-bold tracking-wider uppercase text-sm">Nosso Cardápio</span>
-                        <h2 class="text-text-main dark:text-white text-4xl font-bold">Sabores que encantam</h2>
-                    </div>
-                    <!-- Tabs -->
-                    <div class="flex justify-center border-b border-[#e8e2ce] dark:border-gray-800">
-                        <div class="flex w-full max-w-md justify-between">
-                            <button
-                                class="group flex flex-col items-center justify-center border-b-[3px] border-b-primary pb-3 pt-4 flex-1 text-primary transition-colors">
-                                <span class="material-symbols-outlined mb-1">tapas</span>
-                                <span class="text-sm font-bold tracking-wider">Petiscos</span>
-                            </button>
-                            <button
-                                class="group flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-primary/50 text-text-muted hover:text-text-main pb-3 pt-4 flex-1 transition-colors dark:text-gray-400 dark:hover:text-white">
-                                <span class="material-symbols-outlined mb-1">restaurant</span>
-                                <span class="text-sm font-bold tracking-wider">Pratos Principais</span>
-                            </button>
-                            <button
-                                class="group flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-primary/50 text-text-muted hover:text-text-main pb-3 pt-4 flex-1 transition-colors dark:text-gray-400 dark:hover:text-white">
-                                <span class="material-symbols-outlined mb-1">local_bar</span>
-                                <span class="text-sm font-bold tracking-wider">Bebidas</span>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Cards Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Item 1 -->
-                        <div
-                            class="bg-white dark:bg-[#2a261a] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800">
-                            <div class="h-48 overflow-hidden relative">
-                                <img alt="Petisco 1"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    data-alt="descrição do petisco 1" src="queijo_crocante.png" />
-                                <div
-                                    class="absolute top-3 right-3 bg-primary text-text-main font-bold px-3 py-1 rounded-full text-sm shadow-sm">
-                                    R$ XX,00
-                                </div>
-                            </div>
-                            <div class="p-5 flex flex-col gap-3">
-                                <h3 class="text-text-main dark:text-white text-xl font-bold">Queijo crocante e caldinhos
-                                </h3>
-                                <p class="text-text-muted dark:text-gray-400 text-sm line-clamp-2">Uma combinação
-                                    perfeita de sabor e conforto: o queijo crocante chega dourado por fora, macio e
-                                    cremoso por dentro, servido em lascas generosas que derretem na boca. Ao redor, uma
-                                    seleção de caldinhos bem temperados, encorpados e aromáticos, que vão do
-                                    clássico camarão à carne e feijão, ideais para mergulhar o queijo ou saborear
-                                    colherada após colherada. Uma pedida irresistível e cheia de personalidade do Boteco
-                                    do Tonho.
 
-                                </p>
-                                <button
-                                    class="mt-2 w-full flex items-center justify-center gap-2 rounded-lg py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]">chat</span>
-                                    Pedir no WhatsApp
-                                </button>
-                            </div>
+                <div class="tabs">
+                    <button class="tab-btn active">
+                        <span class="material-symbols-outlined">tapas</span>
+                        Petiscos
+                    </button>
+                    <button class="tab-btn">
+                        <span class="material-symbols-outlined">restaurant</span>
+                        Pratos Principais
+                    </button>
+                    <button class="tab-btn">
+                        <span class="material-symbols-outlined">local_bar</span>
+                        Bebidas
+                    </button>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-img-wrap">
+                            <img src="queijo_crocante.png" alt="Queijo crocante e caldinhos" />
+                            <div class="card-price">R$ XX,00</div>
                         </div>
-                        <!-- Item 2 -->
-                        <div
-                            class="bg-white dark:bg-[#2a261a] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800">
-                            <div class="h-48 overflow-hidden relative">
-                                <img alt="petisco 2"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    data-alt="descrição do petisco 2" src="caldinho.png" />
-                                <div
-                                    class="absolute top-3 right-3 bg-primary text-text-main font-bold px-3 py-1 rounded-full text-sm shadow-sm">
-                                    R$ XX,00
-                                </div>
-                            </div>
-                            <div class="p-5 flex flex-col gap-3">
-                                <h3 class="text-text-main dark:text-white text-xl font-bold">Caldinho de caruru</h3>
-                                <p class="text-text-muted dark:text-gray-400 text-sm line-clamp-2">Um caldinho
-                                    tradicional e saboroso, feito com caruru e temperos regionais. Ideal para acompanhar
-                                    o queijo crocante do Boteco do Tonho.
-                                </p>
-                                <button
-                                    class="mt-2 w-full flex items-center justify-center gap-2 rounded-lg py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]">chat</span>
-                                    Pedir no WhatsApp
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Item 3 -->
-                        <div
-                            class="bg-white dark:bg-[#2a261a] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-gray-100 dark:border-gray-800">
-                            <div class="h-48 overflow-hidden relative">
-                                <img alt="petisco 3"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    data-alt="descrição do petisco 3" src="" />
-                                <div
-                                    class="absolute top-3 right-3 bg-primary text-text-main font-bold px-3 py-1 rounded-full text-sm shadow-sm">
-                                    R$ XX,00
-                                </div>
-                            </div>
-                            <div class="p-5 flex flex-col gap-3">
-                                <h3 class="text-text-main dark:text-white text-xl font-bold">petisco 3</h3>
-                                <p class="text-text-muted dark:text-gray-400 text-sm line-clamp-2">descrição do petisco
-                                    3</p>
-                                <button
-                                    class="mt-2 w-full flex items-center justify-center gap-2 rounded-lg py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]">chat</span>
-                                    Pedir no WhatsApp
-                                </button>
-                            </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Queijo Crocante e Caldinhos</h3>
+                            <p class="card-desc">Uma combinação perfeita de sabor e conforto: o queijo crocante chega
+                                dourado por fora, macio e cremoso por dentro, servido em lascas generosas que derretem
+                                na boca. Ao redor, uma seleção de caldinhos bem temperados, encorpados e aromáticos — do
+                                clássico camarão à carne e feijão.</p>
+                            <button class="btn-whatsapp">
+                                <span class="material-symbols-outlined">chat</span>
+                                Pedir no WhatsApp
+                            </button>
                         </div>
                     </div>
-                    <div class="flex justify-center mt-4">
-                        <button
-                            class="flex items-center gap-2 text-primary font-bold hover:text-yellow-600 transition-colors">
-                            Ver cardápio completo
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                        </button>
+
+                    <div class="card">
+                        <div class="card-img-wrap">
+                            <img src="caldinho.png" alt="Caldinho de caruru" />
+                            <div class="card-price">R$ XX,00</div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Caldinho de Caruru</h3>
+                            <p class="card-desc">Um caldinho tradicional e saboroso, feito com caruru e temperos
+                                regionais. Ideal para acompanhar o queijo crocante do Boteco do Tonho.</p>
+                            <button class="btn-whatsapp">
+                                <span class="material-symbols-outlined">chat</span>
+                                Pedir no WhatsApp
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-wrap no-img">
+                            <img src="petisco3.png" alt="Caldinho de caruru" />
+                            <div class="card-price">R$ XX,00</div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Combo Arretado</h3>
+                            <p class="card-desc">Bolinhos crocantes de
+                                macaxeira com carne de sol, servidos com caldinho cremoso de jerimum e torresmo.</p>
+                            <button class="btn-whatsapp">
+                                <span class="material-symbols-outlined">chat</span>
+                                Pedir no WhatsApp
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </section>
-            <!-- Location Section -->
-            <section class="py-16 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="localizacao">
-                <div
-                    class="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-8 rounded-2xl overflow-hidden bg-white dark:bg-[#2a261a] shadow-lg border border-gray-100 dark:border-gray-800">
-                    <div class="p-8 lg:p-12 flex flex-col justify-center gap-8">
-                        <div>
-                            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Venha nos
-                                visitar</span>
-                            <h2 class="text-text-main dark:text-white text-3xl font-bold mb-4">Estamos esperando por
-                                você!</h2>
-                            <p class="text-text-muted dark:text-gray-400">Localizado no coração de Maceió, o Boteco do
-                                Tonho é o ponto de encontro perfeito.</p>
-                        </div>
-                        <div class="space-y-6">
-                            <div class="flex gap-4 items-start">
-                                <div class="p-3 rounded-full bg-primary/10 text-primary">
+
+                <div class="ver-mais">
+                    <a href="#">
+                        Ver cardápio completo
+                        <span class="material-symbols-outlined" style="font-size:16px;">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="localizacao">
+            <div class="localizacao-inner">
+                <div style="text-align:center; margin-bottom:3.5rem;">
+                    <div class="section-label" style="justify-content:center;">Venha nos visitar</div>
+                    <h2 class="section-title">Estamos esperando <em>por você!</em></h2>
+                </div>
+                <div class="localizacao-grid">
+                    <div class="localizacao-info">
+                        <p style="color:rgba(255,255,255,0.5); font-size:0.9375rem; line-height:1.7;">
+                            Localizado no coração de Maceió, o Boteco do Tonho é o ponto de encontro perfeito.
+                        </p>
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <div class="contact-icon">
                                     <span class="material-symbols-outlined">location_on</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-text-main dark:text-white mb-1">Endereço</h4>
-                                    <p class="text-text-muted dark:text-gray-400 text-sm">R. Manoel Lourenço, 248 -
-                                        Ponta Grossa, Maceió - AL, 57014-450</p>
+                                    <h4>Endereço</h4>
+                                    <p>R. Manoel Lourenço, 248 — Ponta Grossa,<br>Maceió - AL, 57014-450</p>
                                 </div>
                             </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="p-3 rounded-full bg-primary/10 text-primary">
+                            <div class="contact-item">
+                                <div class="contact-icon">
                                     <span class="material-symbols-outlined">schedule</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-text-main dark:text-white mb-1">Horário de Funcionamento
-                                    </h4>
-                                    <p class="text-text-muted dark:text-gray-400 text-sm">Terça a Domingo: 11h às
-                                        16h<br />Feriados: Consulte no Instagram</p>
+                                    <h4>Horário de Funcionamento</h4>
+                                    <p>Terça a Domingo: 11h às 16h<br>Feriados: Consulte no Instagram</p>
                                 </div>
                             </div>
-                            <div class="flex gap-4 items-start">
-                                <div class="p-3 rounded-full bg-primary/10 text-primary">
+                            <div class="contact-item">
+                                <div class="contact-icon">
                                     <span class="material-symbols-outlined">call</span>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-text-main dark:text-white mb-1">Contato</h4>
-                                    <p class="text-text-muted dark:text-gray-400 text-sm">(82)
-                                        3221-6209<br />contato@botecodotonho.com.br</p>
+                                    <h4>Contato</h4>
+                                    <p>(82) 3221-6209<br>contato@botecodotonho.com.br</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="h-[400px] md:h-auto bg-gray-200 relative">
+                    <div class="localizacao-map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.251524411207!2d-35.748553699999995!3d-9.659537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7014f82616435ab%3A0x38852808cb7a4678!2sBoteco%20do%20Tonho!5e0!3m2!1spt-BR!2sbr!4v1771621607760!5m2!1spt-BR!2sbr"
-                            width="600" height="550" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
-            </section>
-        </main>
-        <!-- Footer -->
-        <footer class="bg-[#1c180d] text-white py-12 px-4 md:px-10 lg:px-40">
-            <div
-                class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-800 pb-8">
-                <div class="flex items-center gap-3">
-                    <div class="size-8 flex items-center justify-center text-primary">
-                        <span class="material-symbols-outlined text-3xl">restaurant</span>
-                    </div>
-                    <span class="text-xl font-bold">Boteco do Tonho</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="material-symbols-outlined">restaurante</span>
+                    <span>Boteco do Tonho</span>
                 </div>
-                <div class="flex gap-6">
-                    <a class="hover:text-primary transition-colors" href="https://www.instagram.com/botecodotonho/"
-                        target="_blank">
-                        <span class="sr-only">Instagram</span>
-                        <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/botecodotonho/" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
-                            </path>
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                     </a>
-                    <a class="hover:text-primary transition-colors" href="#">
-                        <span class="sr-only">Facebook</span>
-                        <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <a href="#" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
-                            </path>
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                         </svg>
                     </a>
                 </div>
             </div>
-            <div
-                class="max-w-[1200px] mx-auto pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <div class="footer-bottom">
                 <p>© 2026 Boteco do Tonho. Todos os direitos reservados.</p>
-                <div class="flex gap-4">
-                    <a class="hover:text-white transition-colors" href="#">Termos de Uso</a>
-                    <a class="hover:text-white transition-colors" href="#">Privacidade</a>
+                <div class="footer-links">
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Privacidade</a>
                 </div>
             </div>
-        </footer>
-        <!-- Floating Action Button -->
-        <a aria-label="Fale conosco no WhatsApp"
-            class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-transform hover:scale-110 flex items-center justify-center group"
-            href="#">
-            <span class="material-symbols-outlined text-3xl">chat</span>
-            <span
-                class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out group-hover:ml-2 text-sm font-bold">Fale
-                conosco</span>
-        </a>
-    </div>
+        </div>
+    </footer>
+
+    <a href="#" class="fab-whatsapp" aria-label="Fale conosco no WhatsApp">
+        <span class="material-symbols-outlined">chat</span>
+        <span class="fab-label">Fale conosco</span>
+    </a>
+
 </body>
 
 </html>
